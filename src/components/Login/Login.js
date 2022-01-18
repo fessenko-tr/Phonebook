@@ -2,9 +2,9 @@ import { loginUser } from "../../redux/auth/auth-operations";
 import { useSelector } from "react-redux";
 import { getIsLoading } from "../../redux/auth/auth-selectors";
 import useForm from "../../hooks/useForm";
+import initialState from "./initialState";
 
 function Login() {
-  const initialState = { email: "", password: "" };
   const isLoggingIn = useSelector(getIsLoading);
 
   const [loginForm, handleChange, handleSubmit] = useForm(
