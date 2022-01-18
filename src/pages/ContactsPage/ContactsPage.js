@@ -6,6 +6,7 @@ import Filter from "../../components/Filter";
 import ContactList from "../../components/ContactList";
 import Notification from "../../components/Notification";
 import { getIsContacts } from "../../redux/phonebook/phonebook-selectors";
+
 function ContactsPage() {
   const isContacts = useSelector(getIsContacts);
   const onNoAddedContacts = "You seem not to have added any contacts yet";
