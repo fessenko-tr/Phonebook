@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import { getIsLoading } from "../../redux/auth/auth-selectors";
 import { registerUser } from "../../redux/auth/auth-operations";
 import useForm from "../../hooks/useForm";
+import initialState from "./initialState";
+
 function Register() {
-  const initialState = { name: "", email: "", password: "" };
   const isRegistring = useSelector(getIsLoading);
 
   const [registerForm, handleChange, handleSubmit] = useForm(
