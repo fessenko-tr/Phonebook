@@ -1,0 +1,2 @@
+(this["webpackJsonpgoit-react-hw-08-phonebook"]=this["webpackJsonpgoit-react-hw-08-phonebook"]||[]).push([[7],{190:function(t,e,o){"use strict";o.r(e),o.d(e,"default",(function(){return n}));var r=o(1);var n=function(){return Object(r.jsxs)("h1",{children:["Hi there! Make sure you always keep your contacts at your fingertips \ud83c\udf1d"," "]})}}}]);
+//# sourceMappingURL=7.130f4fb1.chunk.js.map
