@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import MockAPI from "../../api/mockAPI/mockAPI";
 import ConnectionsAPI from "../../api/сonnectionsAPI/connectionsAPI";
 
 export const fetchContacts = createAsyncThunk(
@@ -9,7 +8,7 @@ export const fetchContacts = createAsyncThunk(
       const contacts = await ConnectionsAPI.getContacts();
       return contacts.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -21,7 +20,7 @@ export const deleteContactById = createAsyncThunk(
       await ConnectionsAPI.deleteContactById(id);
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -33,7 +32,7 @@ export const addContact = createAsyncThunk(
       const addedContact = await ConnectionsAPI.postContact(contact);
       return addedContact.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

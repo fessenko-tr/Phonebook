@@ -1,9 +1,10 @@
 import s from "./Filter.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { updateFilter } from "../../redux/phonebook/phonebookSlice";
+import { updateFilter } from "../../redux/phonebook/phonebook-slice";
+import { getFilter } from "../../redux/phonebook/phonebook-selectors";
 
 function Filter() {
-  const filterValue = useSelector((state) => state.phonebook.filter);
+  const filterValue = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const updateFilterFunc = ({ currentTarget }) =>

@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 
 import s from "./ContactForm.module.css";
 import initialState from "./initialState";
-import { addContact } from "../../redux/phonebook/operations";
+import { addContact } from "../../redux/phonebook/phonebook-operations";
+import { getContacts } from "../../redux/phonebook/phonebook-selectors";
 import isAlreadyAdded from "./isAlreadyAdded-function";
 
 function ContactForm() {
   const [state, dispatchState] = useReducer(handleChange, initialState);
+  const contactsArray = useSelector(getContacts);
   const dispatch = useDispatch();
-  const contactsArray = useSelector((state) => state.phonebook.contacts);
 
   function handleChange(state, action) {
     const { option, value } = action;

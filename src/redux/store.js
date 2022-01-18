@@ -10,8 +10,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import auth from "./auth/authSlice";
-import phonebook from "./phonebook/phonebookSlice";
+import auth from "./auth/auth-slice";
+import phonebook from "./phonebook/phonebook-slice";
 
 const authPersistConfig = {
   key: "token",

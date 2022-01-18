@@ -8,7 +8,7 @@ export const fetchUserInfo = createAsyncThunk(
       const userInfo = await ConnectionsAPI.getUsersInfo();
       return userInfo.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -20,7 +20,7 @@ export const registerUser = createAsyncThunk(
       const registerResponse = await ConnectionsAPI.registerUser(data);
       return registerResponse.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -32,7 +32,7 @@ export const loginUser = createAsyncThunk(
       const loginResponse = await ConnectionsAPI.loginUser(data);
       return loginResponse.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -42,9 +42,9 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const logoutRepsonse = await ConnectionsAPI.logoutUser();
-      return logoutRepsonse;
+      return logoutRepsonse.status;
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      thunkAPI.rejectWithValue(error.message);
     }
   }
 );

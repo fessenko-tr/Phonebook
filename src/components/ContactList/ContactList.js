@@ -1,19 +1,14 @@
 import Contact from "../Contact";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContactById } from "../../redux/phonebook/operations";
+import { deleteContactById } from "../../redux/phonebook/phonebook-operations";
+import { getFilteredContacts } from "../../redux/phonebook/phonebook-selectors";
 
 function ContactList() {
-  const contactsArray = useSelector((state) => state.phonebook.contacts);
-  const filterValue = useSelector((state) => state.phonebook.filter);
   const dispatch = useDispatch();
-
+  const filteredContacts = useSelector(getFilteredContacts);
   const deleteContactBtn = (id) => dispatch(deleteContactById(id));
 
-  const getFilteredContacts = contactsArray.filter((el) =>
-    el.name?.toLowerCase().includes(filterValue.toLowerCase())
-  );
-
-  const contactsList = getFilteredContacts.map(({ id, name, number }) => (
+  const contactsList = filteredContacts.map(({ id, name, number }) => (
     <Contact
       key={id}
       id={id}

@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/auth/authOperations";
-
+import { logoutUser } from "../../redux/auth/auth-operations";
+import { getUserName, getIsLoading } from "../../redux/auth/auth-selectors";
 function UserMenu() {
-  const name = useSelector((state) => state.auth.user.name);
+  const name = useSelector(getUserName);
+  const isLoggingOut = useSelector(getIsLoading);
   const dispatch = useDispatch();
-  //проверка залогинен ли оН !?
+
   return (
     <>
-      <p>{`Welcomenne ${name ?? "guest"}`}</p>
+      <p>{`Welcome ${name}`}</p>
       <button
         onClick={() => {
           dispatch(logoutUser());
@@ -16,6 +17,7 @@ function UserMenu() {
       >
         Logout
       </button>
+      {isLoggingOut && <p>Fun spinner</p>}
     </>
   );
 }
