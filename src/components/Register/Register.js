@@ -18,7 +18,7 @@ function Register() {
 
   return (
     <>
-      <Box sx={{ marginTop: "20px" }} onSubmit={handleSubmit} type="form">
+      <Box sx={{ marginTop: "20px" }} onSubmit={handleSubmit} component="form">
         <TextField
           sx={{ marginBottom: "20px" }}
           value={registerForm.name}
