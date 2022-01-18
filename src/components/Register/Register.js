@@ -3,6 +3,10 @@ import { getIsLoading } from "../../redux/auth/auth-selectors";
 import { registerUser } from "../../redux/auth/auth-operations";
 import useForm from "../../hooks/useForm";
 import initialState from "./initialState";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Register() {
   const isRegistring = useSelector(getIsLoading);
@@ -14,32 +18,41 @@ function Register() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
+      <Box sx={{ marginTop: "20px" }} onSubmit={handleSubmit} type="form">
+        <TextField
+          sx={{ marginBottom: "20px" }}
           value={registerForm.name}
           id="nameReg"
           name="name"
           onChange={handleChange}
+          label="name"
+          fullWidth
         />
-        <label htmlFor="nameReg">Name</label>
-        <input
+
+        <TextField
+          sx={{ marginBottom: "20px" }}
           value={registerForm.email}
           id="emailReg"
           name="email"
           onChange={handleChange}
+          label="email"
+          fullWidth
         />
-        <label htmlFor="emailReg">Email</label>
-        <input
+        <TextField
+          sx={{ marginBottom: "20px" }}
           value={registerForm.password}
           id="passwordReg"
           name="password"
           onChange={handleChange}
           type="password"
+          label="password"
+          fullWidth
         />
-        <label htmlFor="passwordReg">Password</label>
-        <button type="submit">Register</button>
-      </form>
-      {isRegistring && <p>Fun spinner</p>}
+        <Button variant="contained" type="submit">
+          Register
+        </Button>
+      </Box>
+      {isRegistring && <CircularProgress />}
     </>
   );
 }

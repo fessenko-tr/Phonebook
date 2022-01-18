@@ -1,5 +1,9 @@
 function MainPage() {
-  return <h1>HI IM A MAIN PAGE</h1>;
+  return (
+    <h1>
+      Hi there! Make sure you always keep your contacts at your fingertips 🌝{" "}
+    </h1>
+  );
 }
 
 export default MainPage;

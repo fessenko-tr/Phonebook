@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import PublicRoute from "../components/PublicRoute/PublicRoute";
 import { lazy, Suspense } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const MainPage = lazy(() => import("./MainPage"));
 const LoginPage = lazy(() => import("./LoginPage"));
@@ -10,7 +11,7 @@ const ContactsPage = lazy(() => import("./ContactsPage"));
 
 function Pages() {
   return (
-    <Suspense fallback={<p>Fun spinner</p>}>
+    <Suspense fallback={<CircularProgress />}>
       <Routes>
         <Route
           path="login"

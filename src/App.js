@@ -11,6 +11,8 @@ import ConnectionsAPI from "./api/сonnectionsAPI/connectionsAPI";
 import MainNav from "./components/MainNav";
 import Pages from "./pages/Pages";
 import { getToken, getIsFetchingUser } from "./redux/auth/auth-selectors";
+import Container from "@mui/material/Container";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function App() {
   const localStorageToken = useSelector(getToken);
@@ -22,14 +24,18 @@ function App() {
     dispatch(fetchUserInfo());
   }, []);
 
-  return isFetchingUser ? (
-    <p>Fun spinner</p>
-  ) : (
-    <>
-      <MainNav />
-      <Pages />
-      <ToastContainer />
-    </>
+  return (
+    <Container sx={{ marginTop: "20px" }} fixed>
+      {isFetchingUser ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <MainNav />
+          <Pages />
+          <ToastContainer />
+        </>
+      )}
+    </Container>
   );
 }
 
