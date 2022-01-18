@@ -1,27 +1,15 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getIsLoading } from "../../redux/auth/auth-selectors";
 import { registerUser } from "../../redux/auth/auth-operations";
-
+import useForm from "../../hooks/useForm";
 function Register() {
   const initialState = { name: "", email: "", password: "" };
-  const [registerForm, setRegisterForm] = useState(initialState);
   const isRegistring = useSelector(getIsLoading);
 
-  const dispatch = useDispatch();
-
-  function handleChange(e) {
-    setRegisterForm({
-      ...registerForm,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(registerUser(registerForm));
-    setRegisterForm(initialState);
-  }
+  const [registerForm, handleChange, handleSubmit] = useForm(
+    initialState,
+    registerUser
+  );
 
   return (
     <>

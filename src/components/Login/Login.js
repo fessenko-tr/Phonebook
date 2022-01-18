@@ -1,25 +1,17 @@
-import { useState } from "react";
 import { loginUser } from "../../redux/auth/auth-operations";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getIsLoading } from "../../redux/auth/auth-selectors";
+import useForm from "../../hooks/useForm";
+
 function Login() {
   const initialState = { email: "", password: "" };
-  const [loginForm, setLoginForm] = useState(initialState);
   const isLoggingIn = useSelector(getIsLoading);
-  const dispatch = useDispatch();
 
-  function handleChange(e) {
-    setLoginForm({
-      ...loginForm,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-  }
+  const [loginForm, handleChange, handleSubmit] = useForm(
+    initialState,
+    loginUser
+  );
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(loginUser(loginForm));
-    setLoginForm(initialState);
-  }
   return (
     <>
       <form onSubmit={handleSubmit}>
