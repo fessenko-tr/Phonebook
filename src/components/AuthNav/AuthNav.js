@@ -12,7 +12,7 @@ function AuthNav() {
   return isLoggedIn ? (
     <UserMenu />
   ) : (
-    <Box sx={{ marginLeft: "auto" }}>
+    <Box sx={{ marginLeft: "auto", display: "flex" }}>
       <NavLink to="login">
         {" "}
         <Button variant="contained">Login </Button>
