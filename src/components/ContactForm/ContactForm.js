@@ -1,26 +1,45 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import s from "./ContactForm.module.css";
 import initialState from "./initialState";
-import { addContact } from "../../redux/phonebook/phonebook-operations";
-import { getContacts } from "../../redux/phonebook/phonebook-selectors";
+import {
+  addContact,
+  editContact,
+} from "../../redux/phonebook/phonebook-operations";
+import {
+  getContacts,
+  getContactToEdut,
+} from "../../redux/phonebook/phonebook-selectors";
 import isAlreadyAdded from "./isAlreadyAdded-function";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import SaveIcon from "@material-ui/icons/Save";
+import { getContactToEdit } from "../../redux/phonebook/phonebook-slice";
 
 function ContactForm() {
   const [state, dispatchState] = useReducer(handleChange, initialState);
   const contactsArray = useSelector(getContacts);
   const dispatch = useDispatch();
+  const contactToEdit = useSelector(getContactToEdut);
+
+  useEffect(() => {
+    if (!contactToEdit) {
+      return;
+    }
+    dispatchState({ option: "edit", value: contactToEdit });
+  }, [contactToEdit]);
 
   function handleChange(state, action) {
     const { option, value } = action;
 
     if (option === "reset") {
       return initialState;
+    }
+
+    if (option === "edit") {
+      return { name: value.name, number: value.number };
     }
 
     return { ...state, [option]: value };
@@ -30,6 +49,14 @@ function ContactForm() {
     const { name } = state;
 
     e.preventDefault();
+
+    if (contactToEdit) {
+      const { name, number } = state;
+      dispatch(editContact({ id: contactToEdit.id, name, number }));
+      dispatch(getContactToEdit(null));
+      dispatchState({ option: "reset" });
+      return;
+    }
 
     if (isAlreadyAdded(contactsArray, name)) {
       toast.info(`${name} has already been added`);

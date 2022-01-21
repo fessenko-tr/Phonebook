@@ -1,0 +1,2 @@
+(this.webpackJsonpphonebook=this.webpackJsonpphonebook||[]).push([[8],{210:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return r}));var o=n(1);var r=function(){return Object(o.jsxs)("h1",{children:["Hi there! Make sure you always keep your contacts at your fingertips \ud83c\udf1d"," "]})}}}]);
+//# sourceMappingURL=8.280e876b.chunk.js.map

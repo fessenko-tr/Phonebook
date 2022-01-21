@@ -4,10 +4,12 @@ import {
   fetchContacts,
   deleteContactById,
   addContact,
+  editContact,
 } from "./phonebook-operations";
 const initialState = {
   contacts: [],
   filter: "",
+  contactToEdit: null,
   error: null,
   isLoading: false,
 };
@@ -18,6 +20,15 @@ const phonebookSlice = createSlice({
   reducers: {
     updateFilter(state, { payload }) {
       state.filter = payload;
+    },
+    getContactToEdit(state, { payload }) {
+      payload
+        ? (state.contactToEdit = {
+            name: payload.name,
+            number: payload.number,
+            id: payload.id,
+          })
+        : (state.contactToEdit = null);
     },
   },
   extraReducers: {
@@ -60,8 +71,27 @@ const phonebookSlice = createSlice({
       toast.error("Oops, something went wrong, please try again");
       state.error = payload;
     },
+    [editContact.pending]: (state) => {
+      state.error = null;
+      state.isLoading = true;
+    },
+    [editContact.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.contacts = state.contacts.map((el) => {
+        if (el.id === payload.id) {
+          el.name = payload.name;
+          el.number = payload.number;
+        }
+        return el;
+      });
+    },
+    [editContact.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error("Oops, something went wrong, please try again");
+      state.error = payload;
+    },
   },
 });
 
-export const { updateFilter } = phonebookSlice.actions;
+export const { updateFilter, getContactToEdit } = phonebookSlice.actions;
 export default phonebookSlice.reducer;

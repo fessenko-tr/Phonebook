@@ -4,6 +4,8 @@ export const getContacts = (state) => state.phonebook.contacts;
 
 export const getFilter = (state) => state.phonebook.filter;
 
+export const getContactToEdut = (state) => state.phonebook.contactToEdit;
+
 export const getFilteredContacts = createSelector(
   getContacts,
   getFilter,

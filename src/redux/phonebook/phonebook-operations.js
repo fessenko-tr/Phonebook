@@ -36,3 +36,18 @@ export const addContact = createAsyncThunk(
     }
   }
 );
+
+export const editContact = createAsyncThunk(
+  "phonebook/editContact",
+  async ({ name, number, id }, thunkAPI) => {
+    try {
+      const editContactResponse = await ConnectionsAPI.editContact(id, {
+        name,
+        number,
+      });
+      return editContactResponse.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

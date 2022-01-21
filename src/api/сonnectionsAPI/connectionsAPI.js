@@ -40,6 +40,10 @@ class ConnectionsAPI {
   static postContact(data) {
     return this.axiosInstance.post("/contacts", data);
   }
+
+  static editContact(id, contact) {
+    return this.axiosInstance.patch(`/contacts/${id}`, contact);
+  }
 }
 
 export default ConnectionsAPI;
