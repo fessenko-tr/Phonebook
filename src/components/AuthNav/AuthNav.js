@@ -9,21 +9,23 @@ import Button from "@mui/material/Button";
 function AuthNav() {
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  return isLoggedIn ? (
-    <UserMenu />
-  ) : (
+  return (
     <Box sx={{ marginLeft: "auto", display: "flex" }}>
-      <NavLink to="login">
-        {" "}
-        <Button variant="contained">Login </Button>
-      </NavLink>
-
-      <NavLink to="register">
-        {" "}
-        <Button variant="contained" sx={{ marginLeft: "20px" }}>
-          Register{" "}
-        </Button>
-      </NavLink>
+      {isLoggedIn ? (
+        <UserMenu />
+      ) : (
+        <>
+          {" "}
+          <NavLink to="login">
+            <Button variant="contained">Login </Button>
+          </NavLink>
+          <NavLink to="register">
+            <Button variant="contained" sx={{ marginLeft: "20px" }}>
+              Register
+            </Button>
+          </NavLink>{" "}
+        </>
+      )}
     </Box>
   );
 }

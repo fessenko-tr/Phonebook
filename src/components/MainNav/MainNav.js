@@ -9,7 +9,7 @@ function MainNav() {
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   return (
-    <Box sx={{ display: "flex" }} fixed>
+    <Box sx={{ display: "flex", alignItems: "center" }} fixed>
       <NavLink to="/">
         <Button variant="contained" sx={{ marginRight: "10px" }}>
           Main

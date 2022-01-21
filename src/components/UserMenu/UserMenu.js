@@ -19,7 +19,6 @@ function UserMenu() {
           dispatch(logoutUser());
         }}
         variant="contained"
-        size="small"
         sx={{ marginLeft: "10px" }}
       >
         Logout
