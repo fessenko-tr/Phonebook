@@ -13,7 +13,7 @@ const initialState = {
   user: { name: "", email: "" },
   token: null,
   isLoggedIn: false,
-  isFetchingUser: true,
+  isFetchingUser: false,
   isLoading: false,
 };
 

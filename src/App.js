@@ -20,6 +20,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!localStorageToken) {
+      return;
+    }
+
     ConnectionsAPI.setToken(localStorageToken);
     dispatch(fetchUserInfo());
   }, []);
