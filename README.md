@@ -8,4 +8,3 @@ A demo of the phonebook app that can help you to store your contacts :telephone_
 
 React.js, React-router, Redux, Redux-persist, Redux-thunk, Material-ui, CSS modules, Rest API (axios)  
 
-[![demo55765d877f158c54.md.gif](https://s10.gifyu.com/images/demo55765d877f158c54.md.gif)](https://gifyu.com/image/SbF2y)
